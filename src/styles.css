@@ -12,7 +12,7 @@ html, body {
 
 @font-face {
     font-family: 'Cal Sans';
-    src: url('CalSans-Regular.ttf') format('truetype');
+    src: local('CalSans-Regular');
     font-weight: normal;
     font-style: normal;
 }
