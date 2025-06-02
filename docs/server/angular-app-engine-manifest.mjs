@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/portfolio',
+  basePath: '/git-live',
   supportedLocales: {
   "en-US": ""
 },
