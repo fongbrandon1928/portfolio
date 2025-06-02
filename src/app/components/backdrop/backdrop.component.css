@@ -1,0 +1,50 @@
+.backdrop-overlay {
+    /* Full viewport coverage */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    /* Centering content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Make sure it's above wallpaper but below other content */
+    z-index: 0;
+    
+    /* Hide pointer events so clicks pass through transparent areas */
+    pointer-events: none;
+    
+  }
+  
+  .backdrop-content {
+    /* Size constraints - about half the page */
+    width: min(90vw, 60vmin); /* Uses viewport minimum dimension */
+    height: 100%;
+    min-height: 50vmin;
+    max-height: 1000vh;
+    
+    /* Visual styling */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(0.3rem); /* Relative blur */
+    border-radius: 1rem; /* Relative radius */
+    padding: clamp(1rem, 3vw, 2rem); /* Responsive padding */
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  
+    /* Enable pointer events for the content area */
+    pointer-events: auto;
+    
+    /* Scrollable if content exceeds height */
+    overflow-y: auto;
+
+    
+  }
+
+  @media screen and (max-resolution: 110dpi) {
+    .backdrop-content {
+      width: min(85vw, 55vmin);
+      padding: 1.5rem;
+    }
+  }

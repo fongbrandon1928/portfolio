@@ -1,0 +1,63 @@
+footer {
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 30px;
+  padding-block: 10px;
+  background-color: transparent;
+  color: white;
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20%;
+  border-radius: 25px;
+  margin-inline: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to left, transparent 0%, black 3%, black 97%, transparent 100%);
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  animation: scroll 18s linear infinite;
+  white-space: nowrap;
+  /* This ensures the content takes only the space it needs */
+  width: fit-content;
+}
+
+@keyframes scroll {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-50%);
+  }
+}
+
+.marquee-content img {
+  height: 60px;
+  width: auto;
+  flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+.languages-text {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-size: 3em;
+  z-index: 10;
+  white-space: nowrap;
+}

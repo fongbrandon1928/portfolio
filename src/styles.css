@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    font-family: 'Cal Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    outline: none;
+}
+
+@font-face {
+    font-family: 'Cal Sans';
+    src: url('/CalSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
