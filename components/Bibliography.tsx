@@ -7,7 +7,7 @@ export function Bibliography({ className }: BibliographyProps) {
     <section className={className}>
       <div className="mx-auto flex w-full max-w-3xl items-start gap-6 rounded-2xl bg-neutral-900/80 p-6 shadow-sm ring-1 ring-neutral-800 backdrop-blur">
         <img
-          src="\images\portrait.jpg"
+          src="/portfolio/images/portrait.jpg"
           alt="Portrait of Brandon"
           width={128}
           height={128}
