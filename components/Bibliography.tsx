@@ -17,8 +17,8 @@ export function Bibliography({ className }: BibliographyProps) {
           <section>
             <h2 className="text-xl font-semibold tracking-tight text-neutral-100">About <span className="accent-cyan">Me</span></h2>
             <p className="mt-2 leading-relaxed text-neutral-300">
-            My name is Brandon Fong and this is my portfolio website! 
-            This website was made to catalogue all the personal and school projects I have worked on. 
+              My name is Brandon Fong and this is my portfolio website!
+              This website was made to catalogue all the personal and school projects I have worked on.
             </p>
           </section>
 
@@ -28,15 +28,16 @@ export function Bibliography({ className }: BibliographyProps) {
             <h2 className="text-xl font-semibold tracking-tight text-neutral-100"><span className="accent-cyan">Education</span></h2>
             <ul className="mt-2 list-disc pl-5 text-neutral-300">
               <li className="mb-2">
-                University of California, Davis — Bachelor's Degree, Computer Science (2022-2024)
+                University of California, Davis — Bachelor&apos;s Degree, Computer Science (2022-2024)
               </li>
               <li>
                 College of Alameda — Computer Science (2019-2022)
                 <ul className="mt-1 list-disc pl-5">
-                  <li>Associate's Degree in Mathematics</li>
+                  <li>Associate&apos;s Degree in Mathematics</li>
                 </ul>
               </li>
             </ul>
+
           </section>
         </div>
       </div>
