@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --accent-cyan: #06b6d4;
+  --accent-cyan-light: #22d3ee;
+  --accent-cyan-dark: #0891b2;
+  --font-lato: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-inter);
+}
+
+.accent-cyan {
+  color: var(--accent-cyan);
+}
+
+.accent-cyan-bg {
+  background-color: var(--accent-cyan);
+}
+
+.accent-cyan-border {
+  border-color: var(--accent-cyan);
+}
+
+.accent-cyan-ring {
+  --tw-ring-color: var(--accent-cyan);
+}
+
+.site-bg {
+  /* Background image with bottom fade to solid background */
+  background:
+    linear-gradient(to bottom, rgba(28,28,28,0) 70%, rgba(28,28,28,1) 100%),
+    url('/images/background.jpg') center top / 100% auto no-repeat;
+  background-color: #1c1c1c;
+}
