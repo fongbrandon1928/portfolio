@@ -1,3 +1,5 @@
+"use client";
+
 type Project = {
   id: string;
   title: string;
@@ -11,6 +13,8 @@ type ProjectsProps = {
   className?: string;
   projects?: Project[];
 };
+
+import { useState } from 'react';
 
 export function Projects({ className, projects }: ProjectsProps) {
   const items: Project[] = projects ?? [
@@ -48,12 +52,57 @@ export function Projects({ className, projects }: ProjectsProps) {
     },
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const maxVisible = 3;
+  const startIndex = currentIndex;
+  const endIndex = Math.min(startIndex + maxVisible, items.length);
+  const visibleItems = items.slice(startIndex, endIndex);
+
+  const goToPrevious = () => {
+    setCurrentIndex(Math.max(0, currentIndex - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex(Math.min(items.length - maxVisible, currentIndex + 1));
+  };
+
   return (
     <section className={className}>
       <div className="mx-auto w-full max-w-5xl">
-        <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
-        <ul className="mt-4 flex gap-4 overflow-x-auto p-4 scrollbar-hide">
-          {items.map((p) => (
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
+          <div className="flex gap-2">
+            <button
+              onClick={goToPrevious}
+              disabled={currentIndex === 0}
+              className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              aria-label="Previous projects"
+            >
+              <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={goToNext}
+              disabled={currentIndex >= items.length - maxVisible}
+              className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              aria-label="Next projects"
+            >
+              <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className=" overflow-hidden px-4.2 py-4">
+          <ul 
+            className="flex gap-4 transition-transform duration-500 ease-in-out"
+            style={{ 
+              transform: `translateX(-${currentIndex * (320 + 16)}px)`,
+              width: `${items.length * (320 + 16) - 16}px`
+            }}
+          >
+            {items.map((p) => (
             <li key={p.id} className="group relative flex-shrink-0 w-80">
               <a
                 href={p.link ?? "#"}
@@ -84,7 +133,8 @@ export function Projects({ className, projects }: ProjectsProps) {
               </a>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       </div>
     </section>
   );
