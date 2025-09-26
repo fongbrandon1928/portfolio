@@ -16,7 +16,7 @@ export function Footer({ className, links }: FooterProps) {
 
   return (
     <footer className={className}>
-      <div className="mx-auto w-full max-w-5xl border-t border-neutral-800/80 pt-8">
+      <div className="mx-auto w-full max-w-5xl border-t border-neutral-500 pt-8">
         <nav className="flex flex-wrap items-center justify-center gap-4 text-sm text-neutral-300">
           {items.map((item) => (
             <a

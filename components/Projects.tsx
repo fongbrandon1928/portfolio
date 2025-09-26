@@ -43,28 +43,28 @@ export function Projects({ className, projects }: ProjectsProps) {
   return (
     <section className={className}>
       <div className="mx-auto w-full max-w-5xl">
-        <h2 className="text-xl font-semibold tracking-tight text-neutral-100"><span className="accent-cyan">Projects</span></h2>
+        <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
         <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((p) => (
             <li key={p.id} className="group relative">
               <a
                 href={p.link ?? "#"}
-                className="block overflow-hidden rounded-2xl bg-neutral-900/80 ring-1 ring-neutral-800 shadow-sm backdrop-blur transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:ring-cyan-500 group-hover:shadow-cyan-500/20"
+                className="block overflow-hidden rounded-2xl bg-white/40 ring-1 ring-neutral-600 shadow-sm backdrop-blur transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:ring-cyan-500 group-hover:shadow-cyan-500/20"
               >
                 <div className="p-4">
-                  <h3 className="text-lg font-medium text-neutral-100 group-hover:accent-cyan transition-colors">{p.title}</h3>
-                  <p className="mt-1 text-sm text-neutral-400">{p.summary}</p>
+                  <h3 className="text-lg font-medium text-neutral-900 group-hover:accent-cyan transition-colors">{p.title}</h3>
+                  <p className="mt-1 text-sm text-white">{p.summary}</p>
                 </div>
 
-                <div className="grid transition-all duration-300 ease-out group-hover:max-h-[1000px] group-hover:opacity-100 group-hover:translate-y-0 max-h-0 opacity-0 translate-y-[-4px]">
-                  <div className="p-4 pt-0 text-sm text-neutral-300">
+                <div className="grid transition-all duration-700 ease-in-out group-hover:max-h-[1000px] group-hover:opacity-100 group-hover:translate-y-0 max-h-0 opacity-0 translate-y-[-4px]">
+                  <div className="p-4 pt-0 text-sm text-black">
                     <p>{p.description}</p>
                     {p.tags && p.tags.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
                         {p.tags.map((t) => (
                           <span
                             key={t}
-                            className="rounded-full border border-neutral-800 bg-neutral-800 px-2.5 py-0.5 text-xs text-neutral-200 hover:accent-cyan-border hover:accent-cyan transition-colors"
+                            className="rounded-full border border-neutral-200 bg-neutral-200 px-2.5 py-0.5 text-xs text-neutral-800 hover:accent-cyan-border hover:accent-cyan transition-colors"
                           >
                             {t}
                           </span>

@@ -5,28 +5,28 @@ type BibliographyProps = {
 export function Bibliography({ className }: BibliographyProps) {
   return (
     <section className={className}>
-      <div className="mx-auto flex w-full max-w-3xl items-start gap-6 rounded-2xl bg-neutral-900/80 p-6 shadow-sm ring-1 ring-neutral-800 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-3xl items-start gap-6 rounded-2xl bg-white/40 p-6 shadow-sm ring-1 ring-neutral-600 backdrop-blur">
         <img
           src="/portfolio/images/portrait.jpg"
           alt="Portrait of Brandon"
           width={128}
           height={128}
-          className="h-40 w-40 rounded-full object-cover ring-2 ring-neutral-800 accent-cyan-ring"
+          className="h-40 w-40 rounded-full object-cover ring-2 ring-neutral-200 accent-cyan-ring"
         />
         <div className="flex-1">
           <section>
-            <h2 className="text-xl font-semibold tracking-tight text-neutral-100">About <span className="accent-cyan">Me</span></h2>
-            <p className="mt-2 leading-relaxed text-neutral-300">
+            <h2 className="text-xl font-semibold tracking-tight text-neutral-900">About <span className="accent-cyan">Me</span></h2>
+            <p className="mt-2 leading-relaxed text-black">
               My name is Brandon Fong and this is my portfolio website!
               This website was made to catalogue all the personal and school projects I have worked on.
             </p>
           </section>
 
-          <hr className="my-4 border-neutral-800" />
+          <hr className="my-4 border-neutral-400" />
 
           <section>
-            <h2 className="text-xl font-semibold tracking-tight text-neutral-100"><span className="accent-cyan">Education</span></h2>
-            <ul className="mt-2 list-disc pl-5 text-neutral-300">
+            <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Education</span></h2>
+            <ul className="mt-2 list-disc pl-5 text-black">
               <li className="mb-2">
                 University of California, Davis — Bachelor&apos;s Degree, Computer Science (2022-2024)
               </li>
