@@ -38,6 +38,14 @@ export function Projects({ className, projects }: ProjectsProps) {
         "The Spring Boot Social Media API is a RESTful backend service developed using Java and the Spring Framework to manage users and messages in a social media context. It supports full user authentication, including login and registration, along with complete CRUD operations for messages. Data persistence is handled efficiently through Spring Data and JDBC, ensuring smooth and reliable storage and retrieval. The project also integrates functionality from Javalin to enhance its flexibility and performance.",
       tags: ["Node.js", "Spring Boot", "Javalin"],
     },
+    {
+      id: "p4",
+      title: "Weather API",
+      summary: "Weather Information",
+      description:
+        "Utilized OpenWeatherMap's API to create a service that pulls weather information for many locations.",
+      tags: ["Python", "API"],
+    },
   ];
 
   return (
