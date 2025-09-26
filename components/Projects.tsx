@@ -52,9 +52,9 @@ export function Projects({ className, projects }: ProjectsProps) {
     <section className={className}>
       <div className="mx-auto w-full max-w-5xl">
         <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
-        <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-4 flex gap-4 overflow-x-auto p-4 scrollbar-hide">
           {items.map((p) => (
-            <li key={p.id} className="group relative">
+            <li key={p.id} className="group relative flex-shrink-0 w-80">
               <a
                 href={p.link ?? "#"}
                 className="block overflow-hidden rounded-2xl bg-white/40 ring-1 ring-neutral-600 shadow-sm backdrop-blur transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:ring-cyan-500 group-hover:shadow-cyan-500/20"
@@ -64,7 +64,7 @@ export function Projects({ className, projects }: ProjectsProps) {
                   <p className="mt-1 text-sm text-white">{p.summary}</p>
                 </div>
 
-                <div className="grid transition-all duration-700 ease-in-out group-hover:max-h-[1000px] group-hover:opacity-100 group-hover:translate-y-0 max-h-0 opacity-0 translate-y-[-4px]">
+                <div className="grid transition-all duration-1200 ease-in-out group-hover:max-h-[1000px] group-hover:opacity-100 group-hover:translate-y-0 max-h-0 opacity-0 translate-y-[-4px]">
                   <div className="p-4 pt-0 text-sm text-black">
                     <p>{p.description}</p>
                     {p.tags && p.tags.length > 0 && (
