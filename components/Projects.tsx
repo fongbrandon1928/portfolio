@@ -14,7 +14,7 @@ type ProjectsProps = {
   projects?: Project[];
 };
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function Projects({ className, projects }: ProjectsProps) {
   const items: Project[] = projects ?? [
@@ -50,10 +50,47 @@ export function Projects({ className, projects }: ProjectsProps) {
         "Utilized OpenWeatherMap's API to create a service that pulls weather information for many locations.",
       tags: ["Python", "API"],
     },
+    {
+      id: "p5",
+      title: "Flashcards App",
+      summary: "Flashcard Frontend + Backend",
+      description:
+        "Created a flashcards app that allows users to create, edit, and delete flashcards sets. It also allows users to study the flashcards. Users can create accounts that will store their flashcards sets.",
+      tags: ["Python",  "Next.js", "Tailwind", "Django"],
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxVisible = 3;
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const [itemUnit, setItemUnit] = useState<number>(336); // fallback: 320 card + 16 gap
+
+  useEffect(() => {
+    const computeMeasurements = () => {
+      if (!listRef.current) return;
+      const listEl = listRef.current as HTMLUListElement;
+      const firstItem = listEl.querySelector('li') as HTMLElement | null;
+      if (!firstItem) return;
+      const computed = getComputedStyle(listEl);
+      const gapPx = parseFloat(computed.gap || computed.columnGap || '0') || 0;
+      const widthPx = firstItem.offsetWidth;
+      const unit = widthPx + gapPx;
+      if (unit > 0 && Math.abs(unit - itemUnit) > 0.5) {
+        setItemUnit(unit);
+      }
+    };
+
+    computeMeasurements();
+
+    const ro = new ResizeObserver(() => computeMeasurements());
+    if (listRef.current) ro.observe(listRef.current);
+    window.addEventListener('resize', computeMeasurements);
+
+    return () => {
+      try { ro.disconnect(); } catch {}
+      window.removeEventListener('resize', computeMeasurements);
+    };
+  }, [itemUnit]);
   const startIndex = currentIndex;
   const endIndex = Math.min(startIndex + maxVisible, items.length);
   const visibleItems = items.slice(startIndex, endIndex);
@@ -69,37 +106,13 @@ export function Projects({ className, projects }: ProjectsProps) {
   return (
     <section className={className}>
       <div className="mx-auto w-full max-w-5xl">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
-          <div className="flex gap-2">
-            <button
-              onClick={goToPrevious}
-              disabled={currentIndex === 0}
-              className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-              aria-label="Previous projects"
-            >
-              <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={goToNext}
-              disabled={currentIndex >= items.length - maxVisible}
-              className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-              aria-label="Next projects"
-            >
-              <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div className=" overflow-hidden px-4.2 py-4">
+        <h2 className="text-center text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
+        <div className="mt-4 overflow-hidden px-6 py-4">
           <ul 
+            ref={listRef}
             className="flex gap-4 transition-transform duration-500 ease-in-out"
             style={{ 
-              transform: `translateX(-${currentIndex * (320 + 16)}px)`,
-              width: `${items.length * (320 + 16) - 16}px`
+              transform: `translateX(-${currentIndex * itemUnit}px)`
             }}
           >
             {items.map((p) => (
@@ -134,6 +147,28 @@ export function Projects({ className, projects }: ProjectsProps) {
             </li>
           ))}
           </ul>
+        </div>
+        <div className="mt-3 flex items-center justify-center gap-2">
+          <button
+            onClick={goToPrevious}
+            disabled={currentIndex === 0}
+            className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            aria-label="Previous projects"
+          >
+            <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={goToNext}
+            disabled={currentIndex >= items.length - maxVisible}
+            className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            aria-label="Next projects"
+          >
+            <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

@@ -13,9 +13,11 @@ export default function Home() {
       <section className="w-full max-w-3xl">
         <Bibliography />
       </section>
+      <hr className="w-full max-w-3xl border-neutral-400/80" />
       <section className="w-full max-w-3xl">
         <Languages />
       </section>
+      <hr className="w-full max-w-3xl border-neutral-400/80" />
       <section className="w-full max-w-5xl">
         <Projects />
       </section>
