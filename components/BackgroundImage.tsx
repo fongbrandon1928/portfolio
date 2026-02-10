@@ -11,7 +11,7 @@ export default function BackgroundImage({ className, src }: BackgroundImageProps
         <img
           src={imageSrc}
           alt="Background"
-          className="w-full h-full object-cover select-none"
+          className="w-full h-full object-cover select-none opacity-50"
           aria-hidden="true"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-100 bg-gradient-to-b from-[#252525] to-transparent" />

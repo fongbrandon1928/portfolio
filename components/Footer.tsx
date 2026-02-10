@@ -31,7 +31,7 @@ export function Footer({ className, links }: FooterProps) {
             </a>
           ))}
         </nav>
-        <p className="mt-6 text-center text-xs text-neutral-500">
+        <p className="mt-6 text-center text-xs text-white">
           © {new Date().getFullYear()} Brandon Fong. All rights reserved.
         </p>
       </div>

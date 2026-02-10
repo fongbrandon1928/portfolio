@@ -5,7 +5,7 @@ type BibliographyProps = {
 export function Bibliography({ className }: BibliographyProps) {
   return (
     <section className={className}>
-      <div className="mx-auto flex w-full max-w-3xl items-start gap-6 rounded-2xl bg-white/40 p-6 shadow-sm ring-1 ring-neutral-600 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-5xl items-start gap-6 rounded-2xl bg-white/40 p-6 shadow-sm ring-1 ring-neutral-600 backdrop-blur">
         <img
           src="/portfolio/images/portrait.jpg"
           alt="Portrait of Brandon"
