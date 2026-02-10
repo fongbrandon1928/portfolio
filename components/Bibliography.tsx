@@ -3,9 +3,10 @@ type BibliographyProps = {
 };
 
 export function Bibliography({ className }: BibliographyProps) {
+  const containerClassName = className ?? "w-full";
   return (
-    <section className={className}>
-      <div className="mx-auto flex w-full max-w-5xl items-start gap-6 rounded-2xl bg-white/40 p-6 shadow-sm ring-1 ring-neutral-600 backdrop-blur">
+    <section className="w-full">
+      <div className={`flex w-full items-start gap-6 rounded-2xl bg-white/40 p-6 shadow-sm ring-1 ring-neutral-600 backdrop-blur ${containerClassName}`}>
         <img
           src="/portfolio/images/portrait.jpg"
           alt="Portrait of Brandon"
