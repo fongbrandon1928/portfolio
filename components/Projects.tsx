@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 type Project = {
   id: string;
   title: string;
@@ -14,177 +17,168 @@ type ProjectsProps = {
   projects?: Project[];
 };
 
-import { useEffect, useRef, useState } from 'react';
+const DEFAULT_PROJECTS: Project[] = [
+  {
+    id: "p1",
+    title: "Market Sector Rotation Detector",
+    summary: "Full-Stack Analytics Platform",
+    description:
+      "Built a full-stack analytics platform with Next.js, TypeScript, Tailwind, and Recharts for market and sector performance insights. Implemented financial logic for cumulative returns, relative strength, and sector-rotation signals.",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Recharts"],
+  },
+  {
+    id: "p2",
+    title: "Machine Learning Prediction",
+    summary: "ML Pipeline & EDA",
+    description:
+      "Built and deployed a heart-disease prediction pipeline with preprocessing and EDA using Pandas/NumPy. Trained and evaluated Logistic Regression, Random Forest, and SVM models with Scikit-learn.",
+    tags: ["Python", "Scikit-learn", "Pandas", "Matplotlib"],
+  },
+  {
+    id: "p3",
+    title: "Full-Stack Flashcard Website",
+    summary: "Django + Next.js Platform",
+    description:
+      "Developed a responsive full-stack platform using Django backend and Next.js/Tailwind CSS frontend. Implemented secure auth (username/password + Google OAuth 2.0) and built DRF CRUD APIs for decks/cards and study progress tracking.",
+    tags: ["Django", "Next.js", "Tailwind", "OAuth 2.0"],
+  },
+  {
+    id: "p4",
+    title: "Spring Boot Social Media API",
+    summary: "RESTful Backend",
+    description:
+      "Built a RESTful API in Java Spring Boot for user and message management with full CRUD operations. Implemented Spring Security + JWT authentication and used Spring Data JPA/JDBC in a modular Controller-Service-Repository architecture.",
+    tags: ["Spring Boot", "Java", "JWT", "Spring Data"],
+  },
+  {
+    id: "p5",
+    title: "Discord Bot",
+    summary: "Real-Time Bot Service",
+    description:
+      "Developed a Discord.js bot in JavaScript to handle server commands and real-time user message interactions. Deployed on Oracle Cloud for reliable 24/7 uptime and continuous availability.",
+    tags: ["JavaScript", "Discord.js", "Oracle Cloud"],
+  },
+  {
+    id: "p6",
+    title: "Global Visualization",
+    summary: "Interactive Dashboard",
+    description:
+      "An interactive dashboard that visualizes global forest coverage with linked charts and a zoomable map.",
+    tags: ["React", "D3", "Chart.js"],
+  },
+  {
+    id: "p7",
+    title: "Weather API",
+    summary: "Weather Service",
+    description:
+      "Utilized OpenWeatherMap's API to create a service that pulls weather information for many locations.",
+    tags: ["Python", "API"],
+  },
+  {
+    id: "p8",
+    title: "Portfolio Website",
+    summary: "Next.js + Tailwind",
+    description:
+      "A dark-themed portfolio showcasing projects, experience, and skills with responsive UI, scroll animations, and gradient effects. (This website)",
+    tags: ["Next.js", "Tailwind", "TypeScript", "Framer Motion"],
+  },
+];
 
 export function Projects({ className, projects }: ProjectsProps) {
-  const items: Project[] = projects ?? [
-    {
-      id: "p1",
-      title: "Portfolio Website",
-      summary: "Next.js + Tailwind",
-      description:
-        "A dark-themed portfolio showcasing projects, education, and skills with responsive UI and animations. (This website)",
-      tags: ["Next.js", "Tailwind", "TypeScript"],
-    },
-    {
-      id: "p2",
-      title: "Global Visualization",
-      summary: "React charts",
-      description:
-        "An interactive dashboard that visualizes global forest coverage with linked charts and a zoomable map.",
-      tags: ["React", "D3", "Chart.js"],
-    },
-    {
-      id: "p3",
-      title: "Social Media API",
-      summary: "Node backend",
-      description:
-        "A RESTful Spring Boot API for a social media app with user auth and full CRUD for messages, backed by Spring Data and JDBC.",
-      tags: ["Node.js", "Spring Boot", "Javalin"],
-    },
-    {
-      id: "p4",
-      title: "Weather API",
-      summary: "Weather Information",
-      description:
-        "Utilized OpenWeatherMap's API to create a service that pulls weather information for many locations.",
-      tags: ["Python", "API"],
-    },
-    {
-      id: "p5",
-      title: "Flashcards App",
-      summary: "Flashcard Frontend + Backend",
-      description:
-        "Created a flashcards app that allows users to create, edit, and delete flashcards sets. It also allows users to study the flashcards. Users can create accounts that will store their flashcards sets.",
-      tags: ["Python",  "Next.js", "Tailwind", "Django"],
-    },
-    {
-      id: "p6",
-      title: "Discord Bot",
-      summary: "Discord.js bot",
-      description:
-        "Created a Discord bot to occupy servers and run commands using the Discord.js library. Built in JavaScript, it responds to user messages and commands and is hosted on Oracle Cloud for 24/7 uptime.",
-      tags: ["JavaScript", "Discord.js", "Oracle Cloud"],
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const minVisible = 1;
-  const listRef = useRef<HTMLUListElement | null>(null);
-  const [itemUnit, setItemUnit] = useState<number>(336); // fallback: 320 card + 16 gap
-  const [visibleCount, setVisibleCount] = useState<number>(3);
-
-  useEffect(() => {
-    const computeMeasurements = () => {
-      if (!listRef.current) return;
-      const listEl = listRef.current as HTMLUListElement;
-      const firstItem = listEl.querySelector('li') as HTMLElement | null;
-      if (!firstItem) return;
-      const computed = getComputedStyle(listEl);
-      const gapPx = parseFloat(computed.gap || computed.columnGap || '0') || 0;
-      const widthPx = firstItem.offsetWidth;
-      const unit = widthPx + gapPx;
-      if (unit > 0 && Math.abs(unit - itemUnit) > 0.5) {
-        setItemUnit(unit);
-      }
-      const listWidth = listEl.clientWidth;
-      const computedVisible = Math.max(minVisible, Math.floor(listWidth / unit) || minVisible);
-      if (computedVisible !== visibleCount) {
-        setVisibleCount(computedVisible);
-      }
-    };
-
-    computeMeasurements();
-
-    const ro = new ResizeObserver(() => computeMeasurements());
-    if (listRef.current) ro.observe(listRef.current);
-    window.addEventListener('resize', computeMeasurements);
-
-    return () => {
-      try { ro.disconnect(); } catch {}
-      window.removeEventListener('resize', computeMeasurements);
-    };
-  }, [itemUnit]);
-  const maxIndex = Math.max(0, items.length - visibleCount);
-
-  const goToPrevious = () => {
-    setCurrentIndex(Math.max(0, currentIndex - 1));
-  };
-
-  const goToNext = () => {
-    setCurrentIndex(Math.min(maxIndex, currentIndex + 1));
-  };
+  const items = projects ?? DEFAULT_PROJECTS;
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className={className}>
-      <div className="mx-auto w-full max-w-5xl">
-        <h2 className="text-center text-xl font-semibold tracking-tight text-neutral-900"><span className="accent-cyan">Projects</span></h2>
-        <div className="mt-4 overflow-x-hidden overflow-y-visible">
-          <ul 
-            ref={listRef}
-            className="flex w-full gap-2 transition-transform duration-500 ease-in-out"
-            style={{ 
-              transform: `translateX(-${currentIndex * itemUnit}px)`
-            }}
-          >
-            {items.map((p) => (
-            <li key={p.id} className="group relative flex-shrink-0 w-60">
-              <a
-                href={p.link ?? "#"}
-                className="block overflow-visible rounded-2xl bg-white/40 ring-1 ring-inset ring-neutral-600 shadow-sm backdrop-blur transition-all duration-300 ease-out group-hover:ring-cyan-500 group-hover:shadow-cyan-500/20"
-              >
-                <div className="p-4">
-                  <h3 className="text-lg font-medium text-neutral-900 group-hover:accent-cyan transition-colors">{p.title}</h3>
-                  <p className="mt-1 text-sm text-white">{p.summary}</p>
-                </div>
+    <section
+      id="projects"
+      className={`section-anchor py-24 px-6 ${className ?? ""}`}
+    >
+      <div ref={ref} className="mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-4"
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--color-accent-light)]">
+            Projects
+          </p>
+          <h2 className="font-heading mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            Things I&apos;ve{" "}
+            <span className="gradient-text-static">built</span>
+          </h2>
+        </motion.div>
 
-                <div className="grid overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out group-hover:max-h-[1000px] group-hover:opacity-100 max-h-0 opacity-0">
-                  <div className="p-4 pt-0 text-sm text-black">
-                    <p>{p.description}</p>
-                    {p.tags && p.tags.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {p.tags.map((t) => (
-                          <span
-                            key={t}
-                            className="rounded-full border border-neutral-200 bg-neutral-200 px-2.5 py-0.5 text-xs text-neutral-800 hover:accent-cyan-border hover:accent-cyan transition-colors"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((p, i) => (
+            <motion.a
+              key={p.id}
+              href={p.link ?? "#"}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+              className="group relative flex flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 transition-all duration-300 hover:border-[var(--color-border-hover)] hover:bg-[var(--color-bg-card-hover)] card-glow"
+            >
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)]/10">
+                <svg
+                  className="h-5 w-5 text-[var(--color-accent-light)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                  />
+                </svg>
+              </div>
+
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] transition-colors duration-200 group-hover:text-[var(--color-accent-light)]">
+                {p.title}
+              </h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                {p.summary}
+              </p>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {p.description}
+              </p>
+
+              {p.tags && p.tags.length > 0 && (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-2.5 py-1 text-xs text-[var(--color-text-muted)]"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
-              </a>
-            </li>
+              )}
+
+              <div className="mt-5 flex items-center gap-1 text-xs text-[var(--color-accent-light)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span>View project</span>
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </div>
+            </motion.a>
           ))}
-          </ul>
-        </div>
-        <div className="mt-3 flex items-center justify-center gap-2">
-          <button
-            onClick={goToPrevious}
-            disabled={currentIndex === 0}
-            className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-            aria-label="Previous projects"
-          >
-            <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={goToNext}
-            disabled={currentIndex >= maxIndex}
-            className="p-2 rounded-lg bg-white/40 ring-1 ring-neutral-600 hover:ring-cyan-500 hover:bg-white/60 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-            aria-label="Next projects"
-          >
-            <svg className="w-4 h-4 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>
   );
 }
-
-

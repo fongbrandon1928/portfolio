@@ -1,38 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --accent-cyan: #06b6d4;
-  --accent-cyan-light: #22d3ee;
-  --accent-cyan-dark: #0891b2;
-  --font-lato: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-bg: #050507;
+  --color-bg-elevated: #0c0c10;
+  --color-bg-card: #111116;
+  --color-bg-card-hover: #16161d;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-text-primary: #f0f0f5;
+  --color-text-secondary: #8a8a9a;
+  --color-text-muted: #55556a;
+  --color-accent: #7c3aed;
+  --color-accent-light: #a78bfa;
+  --color-accent-secondary: #06b6d4;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@theme {
+  --color-bg: #050507;
+  --color-bg-elevated: #0c0c10;
+  --color-bg-card: #111116;
+  --color-bg-card-hover: #16161d;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-text-primary: #f0f0f5;
+  --color-text-secondary: #8a8a9a;
+  --color-text-muted: #55556a;
+  --color-accent: #7c3aed;
+  --color-accent-light: #a78bfa;
+  --color-accent-secondary: #06b6d4;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.accent-cyan {
-  color: var(--accent-cyan);
+.font-heading {
+  font-family: var(--font-heading);
 }
 
-.accent-cyan-bg {
-  background-color: var(--accent-cyan);
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #7c3aed 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease-in-out infinite;
 }
 
-.accent-cyan-border {
-  border-color: var(--accent-cyan);
+.gradient-text-static {
+  background: linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.accent-cyan-ring {
-  --tw-ring-color: var(--accent-cyan);
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
 }
 
-.site-bg {
-  /* Background image with bottom fade to solid background */
-  background-color: #252525;
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #7c3aed, #06b6d4, transparent);
+  opacity: 0.4;
 }
 
-/* Minimalistic scrollbar styling */
+.card-glow {
+  position: relative;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.15));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.noise-bg {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.section-anchor {
+  scroll-margin-top: 80px;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -43,16 +113,20 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(124, 58, 237, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(124, 58, 237, 0.5);
 }
 
-/* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: #f0f0f5;
 }

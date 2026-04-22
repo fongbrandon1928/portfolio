@@ -1,11 +1,21 @@
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import BackgroundImage from "@/components/BackgroundImage";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-lato",
+  variable: "--font-inter",
 });
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+
+export const metadata = {
+  title: "Brandon Fong — Software Developer",
+  description:
+    "Portfolio of Brandon Fong – Full-stack software developer specializing in React, Next.js, and modern web technologies.",
+};
 
 export default function RootLayout({
   children,
@@ -14,8 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} min-h-screen text-neutral-100 font-sans site-bg`} style={{'--accent-cyan': '#06b6d4', '--accent-cyan-light': '#22d3ee', '--accent-cyan-dark': '#0891b2'} as React.CSSProperties}>
-        <BackgroundImage />
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen noise-bg`}
+      >
         {children}
       </body>
     </html>
