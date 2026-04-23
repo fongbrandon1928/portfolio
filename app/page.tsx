@@ -4,6 +4,7 @@ import { Stats } from "@/components/Stats";
 import { Bibliography } from "@/components/Bibliography";
 import { WorkExperience } from "@/components/WorkExperience";
 import { Languages } from "@/components/Languages";
+import { FeaturedProject } from "@/components/FeaturedProject";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Bibliography />
         <WorkExperience />
         <Languages />
+        <FeaturedProject />
         <Projects />
       </main>
       <Footer />
