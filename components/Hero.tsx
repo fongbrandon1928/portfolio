@@ -69,7 +69,7 @@ export function Hero() {
             </a>
             <a
               href="#about"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-7 py-3 text-sm font-semibold text-[var(--color-text-secondary)] transition-all duration-300 hover:border-white/20 hover:text-[var(--color-text-primary)]"
+              className="glass-panel glass-panel-interactive inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-[var(--color-text-primary)]"
             >
               Learn More
             </a>
@@ -103,7 +103,7 @@ export function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 pt-2"
+            className="glass-panel flex h-10 w-6 items-start justify-center rounded-full pt-2"
           >
             <div className="h-2 w-0.5 rounded-full bg-[var(--color-accent-light)]" />
           </motion.div>

@@ -48,7 +48,7 @@ export function Bibliography({ className }: BibliographyProps) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 card-glow">
+            <div className="glass-panel glass-panel-interactive rounded-2xl p-8 card-glow">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
                 <img
                   src="/portfolio/images/portrait.jpg"
@@ -82,7 +82,7 @@ export function Bibliography({ className }: BibliographyProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 card-glow h-full">
+            <div className="glass-panel glass-panel-interactive h-full rounded-2xl p-8 card-glow">
               <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
                 Education
               </h3>

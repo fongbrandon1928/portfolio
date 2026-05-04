@@ -71,7 +71,7 @@ export function Footer({ className }: FooterProps) {
                   ? "noopener noreferrer"
                   : undefined
               }
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-bg-card)] transition-all duration-300 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/10 hover:scale-110"
+              className="glass-panel glass-panel-interactive flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 hover:border-[var(--color-accent)]/35"
               aria-label={link.label}
             >
               <svg

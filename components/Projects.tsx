@@ -118,7 +118,7 @@ export function Projects({ className, projects }: ProjectsProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className="group relative flex flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6 transition-all duration-300 hover:border-[var(--color-border-hover)] hover:bg-[var(--color-bg-card-hover)] card-glow"
+              className="glass-panel glass-panel-interactive group relative flex flex-col rounded-2xl p-6 card-glow"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)]/10">
                 <svg

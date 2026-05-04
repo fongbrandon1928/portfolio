@@ -70,7 +70,7 @@ export function WorkExperience({ className, items }: WorkExperienceProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              className="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 transition-all duration-300 hover:border-[var(--color-border-hover)] card-glow"
+              className="glass-panel glass-panel-interactive group rounded-2xl p-8 card-glow"
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>

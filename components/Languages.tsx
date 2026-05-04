@@ -67,7 +67,7 @@ export function Languages({ className }: { className?: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 card-glow"
+              className="glass-panel glass-panel-interactive rounded-2xl p-8 card-glow"
             >
               <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
                 {cat.title}
