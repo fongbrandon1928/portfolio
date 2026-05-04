@@ -51,7 +51,7 @@ export function Navbar() {
 
         <a
           href="mailto:fongbrandon1928@gmail.com"
-          className="hidden rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 px-5 py-2 text-sm font-medium text-[var(--color-accent-light)] transition-all duration-200 hover:bg-[var(--color-accent)]/20 hover:border-[var(--color-accent)]/50 md:inline-block"
+          className="hidden rounded-full bg-[var(--color-accent)]/10 px-5 py-2 text-sm font-medium text-[var(--color-accent-light)] transition-all duration-200 hover:bg-[var(--color-accent)]/20 md:inline-block"
         >
           Get in Touch
         </a>
@@ -102,7 +102,7 @@ export function Navbar() {
               <li>
                 <a
                   href="mailto:fongbrandon1928@gmail.com"
-                  className="mt-2 block rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 px-5 py-2 text-center text-sm font-medium text-[var(--color-accent-light)]"
+                  className="mt-2 block rounded-full bg-[var(--color-accent)]/10 px-5 py-2 text-center text-sm font-medium text-[var(--color-accent-light)] transition-colors hover:bg-[var(--color-accent)]/20"
                 >
                   Get in Touch
                 </a>
