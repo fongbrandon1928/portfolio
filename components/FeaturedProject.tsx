@@ -63,7 +63,9 @@ export function FeaturedProject({ className }: FeaturedProjectProps) {
 
             <div className="mt-8 lg:mt-10">
               <a
-                href="#"
+                href="https://market-dynamics.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors duration-200 hover:text-[var(--color-accent-light)]"
               >
                 <svg
@@ -92,7 +94,7 @@ export function FeaturedProject({ className }: FeaturedProjectProps) {
               <img
                 src="/portfolio/images/marketdynamics_showcase.png"
                 alt="Market Dynamics — sector rotation analytics platform"
-                className="h-full w-full object-cover object-left-top"
+                className="h-full w-full object-cover object-right-bottom"
               />
             </div>
           </div>
